@@ -38,7 +38,7 @@ public class CharacterControls : MonoBehaviour {
 
     void OnGroundContactChange(object source, GroundContactEventArgs args) {
         _grounded = args.Grounded;
-        Debug.Log(_grounded);
+        //Debug.Log(_grounded);
     }
 
     void Update() {
