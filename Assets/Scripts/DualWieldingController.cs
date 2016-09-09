@@ -3,6 +3,8 @@ using System.Collections;
 
 public class DualWieldingController : MonoBehaviour {
 
+    //Almost everything in this class is temporary and not suitable for use in future. Things will be changed when I'll design actual game mechanisms
+
     public GameObject LeftGun;
     public GameObject RightGun;
     private RevolverController _leftGunController;
@@ -39,10 +41,10 @@ public class DualWieldingController : MonoBehaviour {
         state = true;
         while (state) {
             if (lr) {
-                _leftGunController.SingleShot(WorldCamera.GetAimedPointInWorld(10000.0f), time*2);
+                _leftGunController.SingleShot(WorldCamera.GetAimedPointInWorld(10000.0f, LayermaskRepository.Instance.PlayerBullet), time*2);
             }
             else {
-                _rightGunController.SingleShot(WorldCamera.GetAimedPointInWorld(10000.0f), time * 2);
+                _rightGunController.SingleShot(WorldCamera.GetAimedPointInWorld(10000.0f, LayermaskRepository.Instance.PlayerBullet), time * 2);
             }
             lr = !lr;
             yield return new WaitForSeconds(time);
@@ -52,7 +54,7 @@ public class DualWieldingController : MonoBehaviour {
     public IEnumerator CoroutineSpinShot() {
         float time = 0.1f;
         for (float i = 0.0f; i < 8.0f; i += 1.0f) {
-            _rightGunController.SpinShot(WorldCamera.GetAimedPointInWorld(10000.0f, i/50.0f, i/40.0f), time);
+            _rightGunController.SpinShot(WorldCamera.GetAimedPointInWorld(10000.0f, LayermaskRepository.Instance.PlayerBullet, i /50.0f, i/40.0f), time);
             yield return new WaitForSeconds(time);
         }
     }

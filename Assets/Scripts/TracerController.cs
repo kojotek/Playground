@@ -18,7 +18,6 @@ public class TracerController : MonoBehaviour {
         float dist = Vector3.Distance(From, To);
         if (dist < 180.0f && dist > 80.0f) {
             _line.SetWidth(dist / 60.0f, dist / 40.0f);
-            Debug.Log(dist / 40.0f);
         }
         if (dist <= 80.0f) {
             _line.SetWidth(1.7f, 2);

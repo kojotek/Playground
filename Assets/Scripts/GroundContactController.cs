@@ -2,33 +2,31 @@
 using System.Collections;
 using System;
 
-public class GroundContactEventArgs: EventArgs {
-    public GroundContactEventArgs(bool grounded) {
-        Grounded = grounded;
-    }
-    public bool Grounded { get; set; }
-}
-
 
 public class GroundContactController : MonoBehaviour {
 
-    private bool _grounded;
+    public bool Grounded {
+        get { return _groundColliders > 0.0f; }
+    }
+
+    private int _groundColliders = 0;
     
+    public RaycastHit GetContactPoint() {
+        if (Grounded) {
+            RaycastHit hit;
+            if(Physics.Raycast(transform.position, transform.forward, out hit)) {
+                return hit;
+            }
+        }
+        return new RaycastHit();
+    }
+
     void OnTriggerEnter(Collider collider) {
-        _grounded = true;
-        OnGroundContactChanged(_grounded);
+        _groundColliders++;
     }
 
     void OnTriggerExit(Collider collider) {
-        _grounded = false;
-        OnGroundContactChanged(_grounded);
+        _groundColliders--;
     }
 
-    public delegate void GroundContactChangedEventHandler(object source, GroundContactEventArgs args);
-    public event EventHandler<GroundContactEventArgs> GroundContactChanged;
-    protected virtual void OnGroundContactChanged(bool grounded) {
-        if (GroundContactChanged != null) {
-            GroundContactChanged(this, new GroundContactEventArgs(grounded));
-        }
-    }
 }
