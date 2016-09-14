@@ -86,7 +86,6 @@ public class CharacterControls : MonoBehaviour {
         }
         _rigidbody.velocity = target * Velocity;
         dash = false;
-        Debug.Log(Vector3.Distance(location, transform.position));
     }
 
 }

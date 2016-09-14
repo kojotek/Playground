@@ -1,0 +1,161 @@
+fileFormatVersion: 2
+guid: 5f3376401d6f26348a62421e95e0b0bc
+timeCreated: 1473806021
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Armature
+    100002: BladeL
+    100004: BladeL.001
+    100006: BladeL.001_end
+    100008: BladeL_end
+    100010: BladeR
+    100012: BladeR.001
+    100014: BladeR.001_end
+    100016: BladeR_end
+    100018: ClavicleL
+    100020: ClavicleR
+    100022: Cube
+    100024: Head
+    100026: Head.001
+    100028: Head.001_end
+    100030: Head_end
+    100032: LowerArmL
+    100034: LowerArmR
+    100036: //RootNode
+    100038: Neck1
+    100040: Neck2
+    100042: Root
+    100044: Spine1
+    100046: Spine1.001
+    100048: Spine1.001_end
+    100050: Spine2
+    100052: Spine3
+    100054: Spine3.001
+    100056: Spine3.001_end
+    100058: Tail
+    100060: Tail.002
+    100062: Tail.002_end
+    100064: Tail_end
+    100066: UpperArmL
+    100068: UpperArmL.001
+    100070: UpperArmL.001_end
+    100072: UpperArmR
+    100074: UpperArmR.001
+    100076: UpperArmR.001_end
+    400000: Armature
+    400002: BladeL
+    400004: BladeL.001
+    400006: BladeL.001_end
+    400008: BladeL_end
+    400010: BladeR
+    400012: BladeR.001
+    400014: BladeR.001_end
+    400016: BladeR_end
+    400018: ClavicleL
+    400020: ClavicleR
+    400022: Cube
+    400024: Head
+    400026: Head.001
+    400028: Head.001_end
+    400030: Head_end
+    400032: LowerArmL
+    400034: LowerArmR
+    400036: //RootNode
+    400038: Neck1
+    400040: Neck2
+    400042: Root
+    400044: Spine1
+    400046: Spine1.001
+    400048: Spine1.001_end
+    400050: Spine2
+    400052: Spine3
+    400054: Spine3.001
+    400056: Spine3.001_end
+    400058: Tail
+    400060: Tail.002
+    400062: Tail.002_end
+    400064: Tail_end
+    400066: UpperArmL
+    400068: UpperArmL.001
+    400070: UpperArmL.001_end
+    400072: UpperArmR
+    400074: UpperArmR.001
+    400076: UpperArmR.001_end
+    4300000: Cube
+    7400000: Armature|ArmatureAction
+    7400002: Armature|Idle
+    7400004: Armature|Idle anim
+    7400006: Armature|Idle.001
+    7400008: Armature|Real Idle
+    7400010: Armature|Run
+    7400012: Cube|Idle anim
+    7400014: Cube|Idle.001
+    7400016: Cube|Real Idle
+    9500000: //RootNode
+    13700000: Cube
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

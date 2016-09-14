@@ -3,9 +3,11 @@ using System.Collections;
 
 public class DecalsManagerController : MonoBehaviour {
 
-    [SerializeField]
-    public GameObject BulletHoleTemplate;
     private static DecalsManagerController _controller;
+
+    public static DecalsManagerController Instance {
+        get { return _controller; }
+    }
 
     void Awake() {
         _controller = GetComponent<DecalsManagerController>();
@@ -21,11 +23,5 @@ public class DecalsManagerController : MonoBehaviour {
             effect.transform.parent = hit.collider.transform;
             effect.SetActive(true);
         }
-
     }
-
-    public static DecalsManagerController GetInstance() {
-        return _controller;
-    }
-
 }

@@ -25,6 +25,7 @@ public class LayermaskRepository{
         _instance.AllLayers.value = int.MaxValue;
         _instance.PlayerBullet.value = 0;
         _instance.PlayerBullet.value |= (1 << LayerMask.NameToLayer("Terrain"));
+        _instance.PlayerBullet.value |= (1 << LayerMask.NameToLayer("Dynamic Terrain Element"));
         _instance.PlayerBullet.value |= (1 << LayerMask.NameToLayer("Enemy Body Part"));
     }
 

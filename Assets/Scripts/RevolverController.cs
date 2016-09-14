@@ -3,12 +3,13 @@ using System.Collections;
 
 public class RevolverController : MonoBehaviour {
 
-    private Animator _animator;
-    private RevolverParticleSystemController _particleSystem;
-    private RevolverTrailController _trail;
-    private RevolverSoundSourceController _soundSource;
-    private RevolverTracerGeneratorController _tracerGenerator;
-    private RedHotEffectController _redHotEffect;
+    public Animator _animator;
+    public RevolverParticleSystemController _particleSystem;
+    public RevolverTrailController _trail;
+    public RevolverSoundSourceController _soundSource;
+    public RevolverTracerGeneratorController _tracerGenerator;
+    public RevolverGunTipController _gunTip;
+    public RedHotEffectController _redHotEffect;
     private float _heat;
 
 	private void Awake () {
@@ -18,6 +19,7 @@ public class RevolverController : MonoBehaviour {
         _trail = GetComponentInChildren<RevolverTrailController>();
         _tracerGenerator = GetComponentInChildren<RevolverTracerGeneratorController>();
         _redHotEffect = GetComponentInChildren<RedHotEffectController>();
+        _gunTip = GetComponentInChildren<RevolverGunTipController>();
     }
 
     private void Start() {
@@ -29,19 +31,26 @@ public class RevolverController : MonoBehaviour {
         _redHotEffect.SetEmissionIntensity(_heat);
     }
 
-    public void SingleShot(Vector3 target, float time) {
+    public void SingleShot(Ray rayFromCamera, float time) {
+        ShotResult result = new ShotResult(CamerasManagerController.Instance.WeaponToWorld(_gunTip.transform.position, 3.0f), rayFromCamera, 3000.0f);
         _animator.speed = 1.01f / time;
         _animator.Play("shot", 0, 0.0f);
-        _tracerGenerator.GenerateSignleShotTracer(target);
+        _tracerGenerator.GenerateSingleShotTracer(result.point);
+        if (result.hit) {
+            DecalsManagerController.Instance.CreateShotEffect(result.raycastHit);
+        }
         _heat += 0.02f;
     }
 
-    public void SpinShot(Vector3 target, float time) {
+    public void SpinShot(Ray rayFromCamera, float time) {
+        ShotResult result = new ShotResult(CamerasManagerController.Instance.WeaponToWorld(_gunTip.transform.position, 3.0f), rayFromCamera, 3000.0f);
         _animator.speed = 1.0f / time;
         _animator.PlayInFixedTime("spinshot", 0, 0.0f);
-        _tracerGenerator.GenerateSignleShotTracer(target);
+        _tracerGenerator.GenerateSingleShotTracer(result.point);
+        if (result.hit) {
+            DecalsManagerController.Instance.CreateShotEffect(result.raycastHit);
+        }
         _heat += 0.06f;
-        //_animator.Play();
     }
 
 

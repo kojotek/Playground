@@ -9,6 +9,14 @@ public class CameraController : MonoBehaviour {
         _camera = GetComponent<Camera>();
 	}
 
+    public Ray GetRayInWorld() {
+        return _camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+    }
+
+    public Ray GetRayInWorldWithRecoil(float minRecoil, float maxRecoil) {
+        return _camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0)).RandomizeDirectionSpherically(Random.Range(minRecoil, maxRecoil));
+    }
+
     public Vector3 GetAimedPointInWorld(float maxDist, int layerMask, float minRecoil = 0.0f, float maxRecoil = 0.0f) {
         Ray ray = _camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
         ray = ray.RandomizeDirectionSpherically(Random.Range(minRecoil, maxRecoil));
@@ -16,7 +24,7 @@ public class CameraController : MonoBehaviour {
         RaycastHit hit;
         var contact = Physics.Raycast(ray, out hit, maxDist, layerMask);
         if (contact) {
-            DecalsManagerController.GetInstance().CreateShotEffect(hit);
+            //DecalsManagerController.GetInstance().CreateShotEffect(hit);
             return hit.point;
         }
         else {
