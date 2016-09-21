@@ -79,8 +79,8 @@ public class CharacterControls : MonoBehaviour {
         if (target.magnitude == 0.0f) {
             target = transform.forward;
         }
-        Vector3 location = transform.position;
-        for (float t = 0.0f; t < 0.1f; t+=Time.deltaTime){
+        //Vector3 location = transform.position;
+        for (float t = 0.0f; t < 0.05f; t+=Time.deltaTime){
             _rigidbody.velocity = target * 1000f;
             yield return null;
         }

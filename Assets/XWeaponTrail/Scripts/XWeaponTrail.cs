@@ -129,7 +129,7 @@ namespace Xft {
 
             mElemPool = new ElementPool(MaxFrame);
 
-            mTrailWidth = (PointStart.localPosition - PointEnd.localPosition).magnitude;
+            mTrailWidth = (PointStart.position - PointEnd.position).magnitude;
 
             InitMeshObj();
 
@@ -172,6 +172,7 @@ namespace Xft {
         }
 
         public void StopSmoothly(float fadeTime) {
+            fadeTime = Mathf.Max(0.01f, fadeTime);
             mIsFading = true;
             mFadeTime = fadeTime;
         }

@@ -1,14 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RevolverController : MonoBehaviour {
+public class RevolverController : WeaponController {
 
+    [HideInInspector]
     public Animator _animator;
+    [HideInInspector]
     public RevolverParticleSystemController _particleSystem;
+    [HideInInspector]
     public RevolverTrailController _trail;
+    [HideInInspector]
     public RevolverSoundSourceController _soundSource;
-    public RevolverTracerGeneratorController _tracerGenerator;
-    public RevolverGunTipController _gunTip;
+    [HideInInspector]
     public RedHotEffectController _redHotEffect;
     private float _heat;
 
@@ -17,9 +20,8 @@ public class RevolverController : MonoBehaviour {
         _particleSystem = GetComponentInChildren<RevolverParticleSystemController>();
         _soundSource = GetComponentInChildren<RevolverSoundSourceController>();
         _trail = GetComponentInChildren<RevolverTrailController>();
-        _tracerGenerator = GetComponentInChildren<RevolverTracerGeneratorController>();
         _redHotEffect = GetComponentInChildren<RedHotEffectController>();
-        _gunTip = GetComponentInChildren<RevolverGunTipController>();
+        gunTip = GetComponentInChildren<GunTipController>();
     }
 
     private void Start() {
@@ -31,25 +33,29 @@ public class RevolverController : MonoBehaviour {
         _redHotEffect.SetEmissionIntensity(_heat);
     }
 
-    public void SingleShot(Ray rayFromCamera, float time) {
-        ShotResult result = new ShotResult(CamerasManagerController.Instance.WeaponToWorld(_gunTip.transform.position, 3.0f), rayFromCamera, 3000.0f);
+    public override void PrimaryShot(Ray rayFromCamera, float time) {
+       //ShotResult result = new ShotResult(CamerasManagerController.Instance.WeaponToWorld(_gunTip.transform.position, 3.0f), rayFromCamera, 3000.0f);
         _animator.speed = 1.01f / time;
         _animator.Play("shot", 0, 0.0f);
-        _tracerGenerator.GenerateSingleShotTracer(result.point);
-        if (result.hit) {
-            DecalsManagerController.Instance.CreateShotEffect(result.raycastHit);
-        }
+        BasicHitScanTracerWeaponProjectile bshp = new BasicHitScanTracerWeaponProjectile(this, CamerasManagerController.Instance.WeaponToWorld(gunTip.transform.position, 3.0f), rayFromCamera);
+        bshp.Init();
+        //_tracerGenerator.GenerateSingleShotTracer(result.point);
+        //if (result.hit) {
+        //    DecalsManagerController.Instance.CreateShotEffect(result.raycastHit);
+        //}
         _heat += 0.02f;
     }
 
-    public void SpinShot(Ray rayFromCamera, float time) {
-        ShotResult result = new ShotResult(CamerasManagerController.Instance.WeaponToWorld(_gunTip.transform.position, 3.0f), rayFromCamera, 3000.0f);
+    public override void SecondaryShot(Ray rayFromCamera, float time) {
+        //ShotResult result = new ShotResult(CamerasManagerController.Instance.WeaponToWorld(_gunTip.transform.position, 3.0f), rayFromCamera, 3000.0f);
         _animator.speed = 1.0f / time;
         _animator.PlayInFixedTime("spinshot", 0, 0.0f);
-        _tracerGenerator.GenerateSingleShotTracer(result.point);
-        if (result.hit) {
-            DecalsManagerController.Instance.CreateShotEffect(result.raycastHit);
-        }
+        BasicHitScanTracerWeaponProjectile bshp = new BasicHitScanTracerWeaponProjectile(this, CamerasManagerController.Instance.WeaponToWorld(gunTip.transform.position, 3.0f), rayFromCamera);
+        bshp.Init();
+        //_tracerGenerator.GenerateSingleShotTracer(result.point);
+        //if (result.hit) {
+        //    DecalsManagerController.Instance.CreateShotEffect(result.raycastHit);
+        //}
         _heat += 0.06f;
     }
 

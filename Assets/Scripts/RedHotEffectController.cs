@@ -14,7 +14,4 @@ public class RedHotEffectController : MonoBehaviour {
     public void SetEmissionIntensity(float intensity) {
         _material.SetColor ("_EmissionColor", new Color(intensity, 0.0f, 0.0f));
     }
-
-    float d = 0.0f;
-
 }

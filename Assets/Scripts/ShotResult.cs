@@ -33,23 +33,37 @@ public class ShotResult {
     }
 
 
-    public ShotResult(Ray rayFromCamera, float maxDist) {
+    public ShotResult(Ray ray, float maxDist, LayerMask mask) {
         RaycastHit cameraHit;
-        Physics.Raycast(rayFromCamera, out cameraHit, maxDist, LayermaskRepository.Instance.PlayerBullet);
-
+        Physics.Raycast(ray, out cameraHit, maxDist, mask);
 
         if (cameraHit.collider != null) {
-            origin = rayFromCamera.origin;
+            origin = ray.origin;
             raycastHit = cameraHit;
             point = cameraHit.point;
             collider = cameraHit.collider;
         }
         else {
             point = cameraHit.point;
-            origin = rayFromCamera.origin;
+            origin = ray.origin;
         }
     }
 
+    public ShotResult(Ray ray, float maxDist, float radius, LayerMask mask) {
+        RaycastHit cameraHit;
+        Physics.CapsuleCast(ray.origin, ray.origin + ray.direction, radius, ray.direction, out cameraHit, 3000.0f, mask);
+
+        if (cameraHit.collider != null) {
+            origin = ray.origin;
+            raycastHit = cameraHit;
+            point = cameraHit.point;
+            collider = cameraHit.collider;
+        }
+        else {
+            point = cameraHit.point;
+            origin = ray.origin;
+        }
+    }
 
 
     public bool hit {
