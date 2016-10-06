@@ -8,31 +8,14 @@ public abstract class Projectile : INotifyHit {
     protected DamageTable damageTable;
     public IDamageDealer Owner { get; set; }
 
-    public Projectile(IDamageDealer owner, Vector3 position, Ray ray) {
+    public Projectile(IDamageDealer owner, Vector3 position, Ray ray, DamageTable table) {
         Owner = owner;
         StartPosition = position;
         AimingRay = ray;
+        damageTable = table;
     }
 
     public abstract void Init();
     public abstract void OnHitTarget(HitBoxController enemyHitBox);
-
-    public abstract void NotifyAboutHit();
-}
-
-
-public class DamageTable {
-    float Damage;
-    float CriticalDamage;
-    float StunChance;
-}
-
-
-public abstract class WeaponProjectile : Projectile{
-    protected WeaponController _weapon;
-    public WeaponProjectile(WeaponController weapon, Vector3 position, Ray ray) : base(weapon.owner.owner, position, ray) {
-        _weapon = weapon;
-        //StartPosition = position;
-        //AimingRay = ray;
-    }
+    public abstract void NotifyAboutHit(AttackResult effect);
 }

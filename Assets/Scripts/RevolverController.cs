@@ -33,11 +33,11 @@ public class RevolverController : WeaponController {
         _redHotEffect.SetEmissionIntensity(_heat);
     }
 
-    public override void PrimaryShot(Ray rayFromCamera, float time) {
+    public override void PrimaryShot(Ray rayFromCamera, DamageTable table, float time) {
        //ShotResult result = new ShotResult(CamerasManagerController.Instance.WeaponToWorld(_gunTip.transform.position, 3.0f), rayFromCamera, 3000.0f);
         _animator.speed = 1.01f / time;
         _animator.Play("shot", 0, 0.0f);
-        BasicHitScanTracerWeaponProjectile bshp = new BasicHitScanTracerWeaponProjectile(this, CamerasManagerController.Instance.WeaponToWorld(gunTip.transform.position, 3.0f), rayFromCamera);
+        SingleShotProjectile bshp = new SingleShotProjectile(this, CamerasManagerController.Instance.WeaponToWorld(gunTip.transform.position, 3.0f), rayFromCamera, table);
         bshp.Init();
         //_tracerGenerator.GenerateSingleShotTracer(result.point);
         //if (result.hit) {
@@ -46,11 +46,12 @@ public class RevolverController : WeaponController {
         _heat += 0.02f;
     }
 
-    public override void SecondaryShot(Ray rayFromCamera, float time) {
+    public override void SecondaryShot(Ray rayFromCamera, DamageTable table, float time)
+    {
         //ShotResult result = new ShotResult(CamerasManagerController.Instance.WeaponToWorld(_gunTip.transform.position, 3.0f), rayFromCamera, 3000.0f);
         _animator.speed = 1.0f / time;
         _animator.PlayInFixedTime("spinshot", 0, 0.0f);
-        BasicHitScanTracerWeaponProjectile bshp = new BasicHitScanTracerWeaponProjectile(this, CamerasManagerController.Instance.WeaponToWorld(gunTip.transform.position, 3.0f), rayFromCamera);
+        SingleShotProjectile bshp = new SingleShotProjectile(this, CamerasManagerController.Instance.WeaponToWorld(gunTip.transform.position, 3.0f), rayFromCamera, table);
         bshp.Init();
         //_tracerGenerator.GenerateSingleShotTracer(result.point);
         //if (result.hit) {

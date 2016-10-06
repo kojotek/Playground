@@ -216,9 +216,9 @@ namespace Xft {
             mVertexPool.LateUpdate(Relative);
         }
 
-        void OnLevelWasLoaded(int level) {
-            mInited = false;
-        }
+        //void OnLevelWasLoaded(int level) {
+        //    mInited = false;
+        //}
 
         void OnDestroy() {
             if (!mInited || mVertexPool == null) {

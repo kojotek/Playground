@@ -38,11 +38,11 @@ public class GunWieldingController : MonoBehaviour {
         state = true;
         while (state) {
             if (lr) {
-                leftGunController.PrimaryShot(WorldCamera.GetRayInWorld(), time*2);
+                leftGunController.PrimaryShot(WorldCamera.GetRayInWorld(), new DamageTable(25.01f, 50.01f, 1.25f), time*2);
             }
             else {
                 //_rightGunController.SingleShot(WorldCamera.GetAimedPointInWorld(10000.0f, LayermaskRepository.Instance.PlayerBullet), time * 2);
-                rightGunController.PrimaryShot(WorldCamera.GetRayInWorld(), time * 2);
+                rightGunController.PrimaryShot(WorldCamera.GetRayInWorld(), new DamageTable(25.01f, 50.01f, 1.25f), time * 2);
             }
             lr = !lr;
             yield return new WaitForSeconds(time);
@@ -52,7 +52,7 @@ public class GunWieldingController : MonoBehaviour {
     public IEnumerator CoroutineSpinShot() {
         float time = 0.1f;
         for (float i = 0.0f; i < 8.0f; i += 1.0f) {
-            rightGunController.SecondaryShot(WorldCamera.GetRayInWorldWithRecoil(i /50.0f, i/40.0f), time);
+            rightGunController.SecondaryShot(WorldCamera.GetRayInWorldWithRecoil(i /50.0f, i/40.0f), new DamageTable(15.01f, 25.01f, 1.1f), time);
             yield return new WaitForSeconds(time);
         }
     }

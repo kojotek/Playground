@@ -24,7 +24,6 @@ public class CameraController : MonoBehaviour {
         RaycastHit hit;
         var contact = Physics.Raycast(ray, out hit, maxDist, layerMask);
         if (contact) {
-            //DecalsManagerController.GetInstance().CreateShotEffect(hit);
             return hit.point;
         }
         else {

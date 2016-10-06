@@ -18,7 +18,7 @@ public class TracerGeneratorController : MonoBehaviour {
 
     public void GenerateSingleShotTracer(Vector3 origin, Vector3 destination) {
         var newTrail = Instantiate(SingleShotTracerObjectTemplate);
-        var newTrailController = newTrail.GetComponent<TracerController>();
+        TracerController newTrailController = newTrail.GetComponent<TracerController>();
         newTrailController.From = origin;
         newTrailController.To = destination;
         newTrail.SetActive(true);
