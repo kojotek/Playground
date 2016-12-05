@@ -10,7 +10,7 @@ public class AvatarController : ActorController, IDamageDealer {
     private GunWieldingController _gunWielding;
 
     private float _sharpshooter;
-    public float Sharpshooter {
+    public float sharpshooter {
         set {
             _sharpshooter = value;
             _ui.sharpshooterBar.SetValue(value);
@@ -19,7 +19,7 @@ public class AvatarController : ActorController, IDamageDealer {
     }
 
     private float _coldblood;
-    public float Coldblood {
+    public float coldblood {
         set {
             _coldblood = value;
             _ui.coldbloodBar.SetValue(value);
@@ -27,7 +27,7 @@ public class AvatarController : ActorController, IDamageDealer {
         get { return _coldblood; }
     }
 
-    void Awake(){
+    void Awake() {
         _skillSpawner = GetComponentInChildren<SkillSpawnerController>();
         _gunWielding = GetComponentInChildren<GunWieldingController>();
     }
@@ -36,10 +36,9 @@ public class AvatarController : ActorController, IDamageDealer {
         InitActor(100.0f);
     }
 
-    void Update()
-    {
+    void Update(){
         if (Input.GetKeyDown(KeyCode.E)){
-            _skillSpawner.SpawnBoomerang(_gunWielding.WorldCamera.GetRayInWorld(), new DamageTable(5.0f, 5.0f, 10.0f));
+            _skillSpawner.SpawnBoomerang(_gunWielding.WorldCamera.GetRayInWorld(), new DamageTable(5.0f, false, 5.0f, 10.0f));
         }
     }
 
@@ -50,19 +49,19 @@ public class AvatarController : ActorController, IDamageDealer {
 
                 case (AttackType.SingleShot):
                     if (result.criticalSpot) {
-                        Sharpshooter += 0.1f;
+                        sharpshooter += 0.1f;
                     }
                     else {
-                        Sharpshooter += 0.05f;
+                        sharpshooter += 0.05f;
                     }
                     break;
 
                 case (AttackType.SpinShot):
-                    Sharpshooter += 0.05f;
+                    sharpshooter += 0.05f;
                     break;
 
                 case (AttackType.Boomerang):
-                    Sharpshooter += 0.01f;
+                    sharpshooter += 0.01f;
                     break;
             }
         }

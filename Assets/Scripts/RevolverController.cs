@@ -35,7 +35,7 @@ public class RevolverController : WeaponController {
 
     public override void PrimaryShot(Ray rayFromCamera, DamageTable table, float time) {
        //ShotResult result = new ShotResult(CamerasManagerController.Instance.WeaponToWorld(_gunTip.transform.position, 3.0f), rayFromCamera, 3000.0f);
-        _animator.speed = 1.01f / time;
+        _animator.speed = 1.0f / time;
         _animator.Play("shot", 0, 0.0f);
         SingleShotProjectile bshp = new SingleShotProjectile(this, CamerasManagerController.Instance.WeaponToWorld(gunTip.transform.position, 3.0f), rayFromCamera, table);
         bshp.Init();

@@ -11,7 +11,7 @@ public class SkeletonDamageReceiver : DamageReceiver {
     }
 
     public override void ReceiveDamage(DamageTable table, bool critical) {
-        if (critical){
+        if (critical && table.canDoCriticalDamage){
             _actor.hp -= table.criticalDamage;
         }
         else{

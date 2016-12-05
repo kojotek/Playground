@@ -10,6 +10,8 @@ public class HUDController : MonoBehaviour {
     public CurvedBarManager coldbloodBar;
     [SerializeField]
     public TargetHealthBarController targetHealth;
+    [SerializeField]
+    public CrosshairController crosshair;
     private CameraController _camera;
 
     private 
@@ -31,6 +33,10 @@ public class HUDController : MonoBehaviour {
         coldbloodBar.SetValue(value);
     }
 
+    void SetCrosshairScale(float value) {
+        crosshair.SetScale(value);
+    }
+
     void Update()
     {
 
@@ -44,6 +50,7 @@ public class HUDController : MonoBehaviour {
             sharpshooterBar.AddSizeInPixels(10);
             coldbloodBar.AddSizeInPixels(10);
             targetHealth.AddSizeInPixels(10);
+            crosshair.AddSizeInPixels(10);
         }
 
         if (Input.GetKeyDown(KeyCode.KeypadMinus))
@@ -51,6 +58,7 @@ public class HUDController : MonoBehaviour {
             sharpshooterBar.AddSizeInPixels(-10);
             coldbloodBar.AddSizeInPixels(-10);
             targetHealth.AddSizeInPixels(-10);
+            crosshair.AddSizeInPixels(-10);
         }
     }
 }
