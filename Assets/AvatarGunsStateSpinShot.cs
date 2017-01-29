@@ -45,6 +45,10 @@ public class AvatarGunsStateSpinShot : AvatarGunsState {
         if (shotNumber <= shots) {
 
             while (timePassed > cycleTime) {
+                if (shotNumber > shots) {
+                    Debug.Log("CHOKE!");
+                    break;
+                }
 
                 if (shotNumber < shots) {
 
@@ -95,7 +99,9 @@ public class AvatarGunsStateSpinShot : AvatarGunsState {
             // }
 
         }
-        
+
         return null;
     }
+
+
 }
